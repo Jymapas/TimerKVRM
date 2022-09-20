@@ -16,7 +16,7 @@
         <UniformGrid Grid.Row="1" Rows="2" Columns="2">
             <Button Content="Вопрос" Name="Question" FontSize="24" Click="Question_Click" IsEnabled="False"/>
             <Button Content="Дуплет" Name="Dupl" FontSize="24" Click="Dupl_Click" IsEnabled="False" />
-            <Button Content="Блиц" Name="Bliz" FontSize="24" Click="Bliz_Click" IsEnabled="False" />
+            <Button Content="Блиц" Name="Blitz" FontSize="24" Click="Blitz_Click" IsEnabled="False" />
             <Button Content="Стоп" Name="StopButton" FontSize="24" Click="Stop_Click" IsEnabled="False" />
         </UniformGrid>
     </Grid>

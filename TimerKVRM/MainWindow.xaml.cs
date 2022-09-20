@@ -25,9 +25,7 @@ namespace TimerKVRM
     public partial class MainWindow : Window
     {
         public const string sixty = "60", ten = "10";
-        public const int forty = 40, thirty = 30, twenty = 20;
-        static bool isQuestion = false;
-        static int counter, modifier;
+        static int counter, blitzCounter = 20, duplCounter = 30;
         DispatcherTimer dt = new();
         public MainWindow()
         {
@@ -38,21 +36,21 @@ namespace TimerKVRM
 
         private void Question_Click(object sender, RoutedEventArgs e)
         {
-            Question.IsEnabled = Dupl.IsEnabled = Bliz.IsEnabled = false;
-            modifier -= 60;
+            Question.IsEnabled = Dupl.IsEnabled = Blitz.IsEnabled = false;
             dt.Tick += Dt_Tick;
             dt.Start();
         }
         private void Dupl_Click(object sender, RoutedEventArgs e)
         {
-            Question.IsEnabled = Dupl.IsEnabled = Bliz.IsEnabled = false;
-            modifier -= thirty;
-            dt.Tick += Dt_Tick;
+            Question.IsEnabled = Dupl.IsEnabled = Blitz.IsEnabled = false;
+            dt.Tick += Dupl_Tick;
             dt.Start();
         }
-        private void Bliz_Click(object sender, RoutedEventArgs e)
+        private void Blitz_Click(object sender, RoutedEventArgs e)
         {
-            Question.IsEnabled = Dupl.IsEnabled = Bliz.IsEnabled = false;
+            Question.IsEnabled = Dupl.IsEnabled = Blitz.IsEnabled = false;
+            dt.Tick += Blitz_Tick;
+            dt.Start();
         }
         private void Stop_Click(object sender, RoutedEventArgs e)
         {
@@ -62,11 +60,51 @@ namespace TimerKVRM
         {
             counter--;
             Timer.Content = counter.ToString();
-            if (counter == modifier)
+            if (counter == 0)
             {
                 dt.Tick -= Dt_Tick;
                 Clear(true);
                 dt.Tick += FinalCountdown_Tick;
+            }
+        }
+        private void Dupl_Tick(object? sender, EventArgs e)
+        {
+            counter--;
+            duplCounter--;
+            Timer.Content = counter.ToString();
+            if (duplCounter == 0)
+            {
+                dt.Tick -= Dupl_Tick;
+                if (counter == 0)
+                {
+                    Clear(true);
+                    dt.Tick += FinalCountdown_Tick;
+                }
+                else
+                {
+                    Dupl.IsEnabled = true;
+                    duplCounter = 30;
+                }
+            }
+        }
+        private void Blitz_Tick(object? sender, EventArgs e)
+        {
+            counter--;
+            blitzCounter--;
+            Timer.Content = counter.ToString();
+            if (blitzCounter == 0)
+            {
+                dt.Tick -= Blitz_Tick;
+                if (counter == 0)
+                {
+                    Clear(true);
+                    dt.Tick += FinalCountdown_Tick;
+                }
+                else
+                {
+                    Blitz.IsEnabled = true;
+                    blitzCounter = 20;
+                }
             }
         }
         private void FinalCountdown_Tick(object? sender, EventArgs e)
@@ -84,6 +122,8 @@ namespace TimerKVRM
             dt.Stop();
             dt.Tick -= Dt_Tick;
             dt.Tick -= FinalCountdown_Tick;
+            dt.Tick -= Dupl_Tick;
+
             Clear();
         }
         private void Clear(bool isMinute = false)
@@ -96,9 +136,10 @@ namespace TimerKVRM
             else
             {
                 counter = 60;
-                modifier = 60;
+                blitzCounter = 20;
+                duplCounter = 30;
                 Timer.Content = sixty;
-                Question.IsEnabled = Dupl.IsEnabled = Bliz.IsEnabled = StopButton.IsEnabled = true;
+                Question.IsEnabled = Dupl.IsEnabled = Blitz.IsEnabled = StopButton.IsEnabled = true;
             }
         }
     }
