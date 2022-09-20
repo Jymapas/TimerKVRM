@@ -25,7 +25,9 @@ namespace TimerKVRM
     public partial class MainWindow : Window
     {
         public const string sixty = "60", ten = "10";
-        static int counter;
+        public const int forty = 40, thirty = 30, twenty = 20;
+        static bool isQuestion = false;
+        static int counter, modifier;
         DispatcherTimer dt = new();
         public MainWindow()
         {
@@ -37,12 +39,16 @@ namespace TimerKVRM
         private void Question_Click(object sender, RoutedEventArgs e)
         {
             Question.IsEnabled = Dupl.IsEnabled = Bliz.IsEnabled = false;
+            modifier -= 60;
             dt.Tick += Dt_Tick;
             dt.Start();
         }
         private void Dupl_Click(object sender, RoutedEventArgs e)
         {
             Question.IsEnabled = Dupl.IsEnabled = Bliz.IsEnabled = false;
+            modifier -= thirty;
+            dt.Tick += Dt_Tick;
+            dt.Start();
         }
         private void Bliz_Click(object sender, RoutedEventArgs e)
         {
@@ -56,13 +62,11 @@ namespace TimerKVRM
         {
             counter--;
             Timer.Content = counter.ToString();
-            if (counter == 0)
+            if (counter == modifier)
             {
-                dt.Stop();
-                Clear(true);
                 dt.Tick -= Dt_Tick;
+                Clear(true);
                 dt.Tick += FinalCountdown_Tick;
-                dt.Start();
             }
         }
         private void FinalCountdown_Tick(object? sender, EventArgs e)
@@ -72,7 +76,6 @@ namespace TimerKVRM
             if (counter == 0)
             {
                 Stop();
-                dt.Tick -= FinalCountdown_Tick;
             }
         }
 
@@ -80,6 +83,7 @@ namespace TimerKVRM
         {
             dt.Stop();
             dt.Tick -= Dt_Tick;
+            dt.Tick -= FinalCountdown_Tick;
             Clear();
         }
         private void Clear(bool isMinute = false)
@@ -92,6 +96,7 @@ namespace TimerKVRM
             else
             {
                 counter = 60;
+                modifier = 60;
                 Timer.Content = sixty;
                 Question.IsEnabled = Dupl.IsEnabled = Bliz.IsEnabled = StopButton.IsEnabled = true;
             }
