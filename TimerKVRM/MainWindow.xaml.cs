@@ -27,6 +27,7 @@ namespace TimerKVRM
         public const string sixty = "60", ten = "10";
         static int counter, blitzCounter = 20, duplCounter = 30;
         DispatcherTimer dt = new();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -132,6 +133,7 @@ namespace TimerKVRM
             {
                 counter = 10;
                 Timer.Content = ten;
+                Timer.Foreground = Brushes.Red;
             }
             else
             {
@@ -140,6 +142,7 @@ namespace TimerKVRM
                 duplCounter = 30;
                 Timer.Content = sixty;
                 Question.IsEnabled = Dupl.IsEnabled = Blitz.IsEnabled = StopButton.IsEnabled = true;
+                Timer.Foreground = Brushes.Black;
             }
         }
     }
