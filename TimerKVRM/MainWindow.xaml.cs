@@ -25,7 +25,7 @@ namespace TimerKVRM
     public partial class MainWindow : Window
     {
         public const string sixty = "60", ten = "10";
-        static int counter, blitzCounter = 20, duplCounter = 30;
+        static int counter, blitzCounter, duplCounter;
         DispatcherTimer dt = new();
 
         public MainWindow()
