@@ -1,22 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Media;
-using System.Security.AccessControl;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace TimerKVRM
@@ -89,7 +74,6 @@ namespace TimerKVRM
             if (duplCounter == 0)
             {
                 dt.Tick -= Dupl_Tick;
-                bBrake.Play();
                 if (counter == 0)
                 {
                     Clear(true);
@@ -98,6 +82,7 @@ namespace TimerKVRM
                 }
                 else
                 {
+                    bBrake.Play();
                     Dupl.IsEnabled = true;
                     duplCounter = 30;
                 }
@@ -112,7 +97,6 @@ namespace TimerKVRM
             if (blitzCounter == 0)
             {
                 dt.Tick -= Blitz_Tick;
-                bBrake.Play();
                 if (counter == 0)
                 {
                     Clear(true);
@@ -121,6 +105,7 @@ namespace TimerKVRM
                 }
                 else
                 {
+                    bBrake.Play();
                     Blitz.IsEnabled = true;
                     blitzCounter = 20;
                 }
