@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TimerKVRM"
         mc:Ignorable="d"
-        Title="Таймер" Height="350" Width="250">
+        Title="Таймер" Height="350" Width="250" 
+        Topmost="True">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
