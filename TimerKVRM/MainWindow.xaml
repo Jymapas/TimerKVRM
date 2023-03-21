@@ -5,19 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TimerKVRM"
         mc:Ignorable="d"
-        Title="Таймер" Height="350" Width="250">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions />
-        <Label Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Name="Timer" FontSize="120" />
-        <UniformGrid Grid.Row="1" Rows="2" Columns="2">
-            <Button Content="Вопрос" Name="Question" FontSize="24" Click="Question_Click" IsEnabled="False"/>
-            <Button Content="Дуплет" Name="Dupl" FontSize="24" Click="Dupl_Click" IsEnabled="False" />
-            <Button Content="Блиц" Name="Blitz" FontSize="24" Click="Blitz_Click" IsEnabled="False" />
-            <Button Content="Стоп" Name="StopButton" FontSize="24" Click="Stop_Click" IsEnabled="False" />
+        Title="Таймер"
+        Height="350"
+        Width="250"
+        Topmost="True">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="IsEnabled" Value="False" />
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="120"/>
+        </Style>
+    </Window.Resources>
+
+    <UniformGrid Rows="2">
+        <Label Grid.Row="0" Name="Timer" />
+        <UniformGrid Rows="2" Columns="2">
+            <Button Content="Вопрос"
+                    Name="Question"
+                    Click="Question_Click" />
+            <Button Content="Дуплет"
+                    Name="Dupl"
+                    Click="Dupl_Click" />
+            <Button Content="Блиц"
+                    Name="Blitz"
+                    Click="Blitz_Click" />
+            <Button Content="Стоп" 
+                    Name="StopButton" 
+                    Click="Stop_Click" />
         </UniformGrid>
-    </Grid>
+    </UniformGrid>
 </Window>
