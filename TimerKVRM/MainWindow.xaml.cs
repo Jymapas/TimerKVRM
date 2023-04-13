@@ -11,13 +11,13 @@ namespace TimerKVRM
     /// </summary>
     public partial class MainWindow : Window
     {
-        public const string sixty = "60", ten = "10";
-        static int counter, blitzCounter, duplCounter;
-        DispatcherTimer dt = new();
-        SoundPlayer fc = new(Properties.Resources.finialCountdown);
-        SoundPlayer start = new(Properties.Resources.start);
-        SoundPlayer bBrake = new(Properties.Resources.bBreak);
-        SoundPlayer tenSec = new(Properties.Resources.tenSeconds);
+        public const string Sixty = "60", Ten = "10";
+        private static int _counter, _blitzCounter, _doubletCounter;
+        readonly DispatcherTimer dt = new DispatcherTimer();
+        private readonly SoundPlayer _fc = new SoundPlayer(Properties.Resources.finialCountdown);
+        private readonly SoundPlayer _start = new SoundPlayer(Properties.Resources.start);
+        private readonly SoundPlayer _bBrake = new SoundPlayer(Properties.Resources.bBreak);
+        private readonly SoundPlayer _tenSec = new SoundPlayer(Properties.Resources.tenSeconds);
 
         public MainWindow()
         {
@@ -29,93 +29,93 @@ namespace TimerKVRM
         private void Question_Click(object sender, RoutedEventArgs e)
         {
             Question.IsEnabled = Dupl.IsEnabled = Blitz.IsEnabled = false;
-            start.Play();
+            _start.Play();
             dt.Tick += Dt_Tick;
             dt.Start();
         }
         private void Dupl_Click(object sender, RoutedEventArgs e)
         {
             Question.IsEnabled = Dupl.IsEnabled = Blitz.IsEnabled = false;
-            start.Play();
+            _start.Play();
             dt.Tick += Dupl_Tick;
             dt.Start();
         }
         private void Blitz_Click(object sender, RoutedEventArgs e)
         {
             Question.IsEnabled = Dupl.IsEnabled = Blitz.IsEnabled = false;
-            start.Play();
+            _start.Play();
             dt.Tick += Blitz_Tick;
             dt.Start();
         }
         private void Stop_Click(object sender, RoutedEventArgs e)
         {
-            fc.Stop();
+            _fc.Stop();
             Stop();
         }
-        private void Dt_Tick(object? sender, EventArgs e)
+        private void Dt_Tick(object sender, EventArgs e)
         {
-            counter--;
-            Timer.Content = counter.ToString();
-            if (counter == 11) TenSecondsPlay();
-            if (counter == 0)
+            _counter--;
+            Timer.Content = _counter.ToString();
+            if (_counter == 11) TenSecondsPlay();
+            if (_counter == 0)
             {
                 dt.Tick -= Dt_Tick;
                 Clear(true);
-                fc.Play();
+                _fc.Play();
                 dt.Tick += FinalCountdown_Tick;
             }
         }
-        private void Dupl_Tick(object? sender, EventArgs e)
+        private void Dupl_Tick(object sender, EventArgs e)
         {
-            counter--;
-            duplCounter--;
-            Timer.Content = counter.ToString();
-            if (counter == 11) TenSecondsPlay();
-            if (duplCounter == 0)
+            _counter--;
+            _doubletCounter--;
+            Timer.Content = _counter.ToString();
+            if (_counter == 11) TenSecondsPlay();
+            if (_doubletCounter == 0)
             {
                 dt.Tick -= Dupl_Tick;
-                if (counter == 0)
+                if (_counter == 0)
                 {
                     Clear(true);
-                    fc.Play();
+                    _fc.Play();
                     dt.Tick += FinalCountdown_Tick;
                 }
                 else
                 {
-                    bBrake.Play();
+                    _bBrake.Play();
                     Dupl.IsEnabled = true;
-                    duplCounter = 30;
+                    _doubletCounter = 30;
                 }
             }
         }
-        private void Blitz_Tick(object? sender, EventArgs e)
+        private void Blitz_Tick(object sender, EventArgs e)
         {
-            counter--;
-            blitzCounter--;
-            Timer.Content = counter.ToString();
-            if (counter == 11) TenSecondsPlay();
-            if (blitzCounter == 0)
+            _counter--;
+            _blitzCounter--;
+            Timer.Content = _counter.ToString();
+            if (_counter == 11) TenSecondsPlay();
+            if (_blitzCounter == 0)
             {
                 dt.Tick -= Blitz_Tick;
-                if (counter == 0)
+                if (_counter == 0)
                 {
                     Clear(true);
-                    fc.Play();
+                    _fc.Play();
                     dt.Tick += FinalCountdown_Tick;
                 }
                 else
                 {
-                    bBrake.Play();
+                    _bBrake.Play();
                     Blitz.IsEnabled = true;
-                    blitzCounter = 20;
+                    _blitzCounter = 20;
                 }
             }
         }
-        private void FinalCountdown_Tick(object? sender, EventArgs e)
+        private void FinalCountdown_Tick(object sender, EventArgs e)
         {
-            counter--;
-            Timer.Content = counter.ToString();
-            if (counter == 0)
+            _counter--;
+            Timer.Content = _counter.ToString();
+            if (_counter == 0)
             {
                 Stop();
             }
@@ -134,23 +134,23 @@ namespace TimerKVRM
         {
             if (isMinute)
             {
-                counter = 10;
-                Timer.Content = ten;
+                _counter = 10;
+                Timer.Content = Ten;
                 Timer.Foreground = Brushes.Red;
             }
             else
             {
-                counter = 60;
-                blitzCounter = 20;
-                duplCounter = 30;
-                Timer.Content = sixty;
+                _counter = 60;
+                _blitzCounter = 20;
+                _doubletCounter = 30;
+                Timer.Content = Sixty;
                 Question.IsEnabled = Dupl.IsEnabled = Blitz.IsEnabled = StopButton.IsEnabled = true;
                 Timer.Foreground = Brushes.Black;
             }
         }
         private void TenSecondsPlay()
         {
-            tenSec.Play();
+            _tenSec.Play();
         }
     }
 }
