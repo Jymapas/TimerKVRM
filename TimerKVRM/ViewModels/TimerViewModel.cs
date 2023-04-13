@@ -1,18 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CommunityToolkit.Mvvm.Input;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using System.Windows.Threading;
-using TimerKVRM.Models;
 
 namespace TimerKVRM.ViewModels
 {
-    internal class TimerViewModel
+    internal class TimerViewModel : INotifyPropertyChanged
     {
-        private DispatcherTimer _timer;
+        readonly DispatcherTimer _timer;
+        private int _displayTime;
 
-        public int DisplayTime { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public int DisplayTime
+        {
+            get => _displayTime;
+            private set
+            {
+                _displayTime = value;
+                OnPropertyChanged();
+            }
+        } //set{_price = value;RaisePropertyChanged(() => Price);}
 
         public ICommand QuestionCommand { get; }
         public ICommand StopCommand { get; }
@@ -24,10 +34,6 @@ namespace TimerKVRM.ViewModels
                 Interval = TimeSpan.FromSeconds(1)
             };
 
-            _timer.Tick += OnTimeChanged;
-
-            DisplayTime = 60;
-
             QuestionCommand = new RelayCommand(Question);
             StopCommand = new RelayCommand(StopTimer);
         }
@@ -35,23 +41,29 @@ namespace TimerKVRM.ViewModels
         private void Question()
         {
             DisplayTime = 60;
+
+            _timer.Tick += Timer_Tick;
             _timer.Start();
         }
 
         private void StopTimer()
-        {
-            _timer.Stop();
+        {_timer.Stop();
             DisplayTime = 60;
         }
 
-        private void OnTimeChanged(object sender, EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)
         {
             DisplayTime--;
 
-            if (DisplayTime < 1)
-            {
-                StopTimer();
-            }
+            if (DisplayTime > 0) return;
+
+            StopTimer();
+            _timer.Tick -= Timer_Tick;
+        }
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

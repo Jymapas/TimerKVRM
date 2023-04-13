@@ -28,7 +28,7 @@
 
     <UniformGrid Rows="2">
         <TextBlock Name="Timer"
-                   Text="{Binding DisplayTime}"/>
+                   Text="{Binding DisplayTime, UpdateSourceTrigger=PropertyChanged}"/>
         <UniformGrid Rows="2" Columns="2">
             <Button Content="Вопрос"
                     Name="Question"

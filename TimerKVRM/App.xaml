@@ -1,8 +1,8 @@
 ﻿<Application x:Class="TimerKVRM.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:TimerKVRM"
              StartupUri="Views/TimerView.xaml">
+    
     <Application.Resources>
          
     </Application.Resources>
