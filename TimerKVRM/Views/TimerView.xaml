@@ -3,19 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TimerKVRM.Views"
+        xmlns:vm="clr-namespace:TimerKVRM.ViewModels"
         mc:Ignorable="d"
         Title="Таймер"
         Height="350"
         Width="250"
         Topmost="True">
     
+    <Window.DataContext>
+        <vm:TimerViewModel/>
+    </Window.DataContext>
+
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="24"/>
-            <Setter Property="IsEnabled" Value="False"/>
+            <!--<Setter Property="IsEnabled" Value="False"/>-->
         </Style>
-        <Style TargetType="Label">
+        <Style TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="120"/>
@@ -23,20 +27,21 @@
     </Window.Resources>
 
     <UniformGrid Rows="2">
-        <Label Name="Timer"/>
+        <TextBlock Name="Timer"
+                   Text="{Binding DisplayTime}"/>
         <UniformGrid Rows="2" Columns="2">
             <Button Content="Вопрос"
                     Name="Question"
-                    Click="Question_Click"/>
+                    Command="{Binding QuestionCommand}"/>
             <Button Content="Дуплет"
-                    Name="Dupl"
-                    Click="Dupl_Click"/>
+                    Name="Doublet"
+                    IsEnabled="False"/>
             <Button Content="Блиц"
                     Name="Blitz"
-                    Click="Blitz_Click"/>
+                    IsEnabled="False"/>
             <Button Content="Стоп" 
                     Name="StopButton" 
-                    Click="Stop_Click"/>
+                    Command="{Binding StopCommand}"/>
         </UniformGrid>
     </UniformGrid>
 </Window>
