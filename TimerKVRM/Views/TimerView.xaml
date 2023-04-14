@@ -27,20 +27,19 @@
     </Window.Resources>
 
     <UniformGrid Rows="2">
-        <TextBlock Name="Timer"
-                   Text="{Binding DisplayTime, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="{Binding DisplayTime}"
+                   Foreground="{Binding DisplayColour}"/>
         <UniformGrid Rows="2" Columns="2">
             <Button Content="Вопрос"
-                    Name="Question"
-                    Command="{Binding QuestionCommand}"/>
+                    Command="{Binding QuestionCommand}"
+                    IsEnabled="{Binding IsQuestionEnabled}"/>
             <Button Content="Дуплет"
-                    Name="Doublet"
-                    IsEnabled="False"/>
+                    Command="{Binding DoubletCommand}"
+                    IsEnabled="{Binding IsDoubletEnabled}"/>
             <Button Content="Блиц"
-                    Name="Blitz"
-                    IsEnabled="False"/>
+                    Command="{Binding BlitzCommand}"
+                    IsEnabled="{Binding IsBlitzEnabled}"/>
             <Button Content="Стоп" 
-                    Name="StopButton" 
                     Command="{Binding StopCommand}"/>
         </UniformGrid>
     </UniformGrid>
