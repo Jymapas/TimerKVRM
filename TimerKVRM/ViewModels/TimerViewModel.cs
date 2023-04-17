@@ -2,7 +2,6 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
@@ -179,7 +178,7 @@ namespace TimerKVRM.ViewModels
             BlitzTime--;
 
             if(BlitzTime > 0) return;
-            _timer.Tick -= DoubletTick;
+            _timer.Tick -= BlitzTick;
             if (DisplayTime == 0)
             {
                 SetCountdownView();
