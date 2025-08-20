@@ -1,24 +1,29 @@
 ﻿<Window x:Class="TimerKVRM.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TimerKVRM"
-        mc:Ignorable="d"
-        Title="Таймер" Height="350" Width="250" 
-        Topmost="True">
+        Title="Таймер" Height="350" Width="250" Topmost="True">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions />
-        <Label Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Name="Timer" FontSize="120" />
+
+        <Label Grid.Row="0"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="120"
+               Content="{Binding TimerText}"
+               Foreground="{Binding TimerBrush}" />
+
         <UniformGrid Grid.Row="1" Rows="2" Columns="2">
-            <Button Content="Вопрос" Name="Question" FontSize="24" Click="Question_Click" IsEnabled="False"/>
-            <Button Content="Дуплет" Name="Dupl" FontSize="24" Click="Dupl_Click" IsEnabled="False" />
-            <Button Content="Блиц" Name="Blitz" FontSize="24" Click="Blitz_Click" IsEnabled="False" />
-            <Button Content="Стоп" Name="StopButton" FontSize="24" Click="Stop_Click" IsEnabled="False" />
+            <Button Content="Вопрос" FontSize="24"
+                    Command="{Binding StartQuestionCommand}" />
+            <Button Content="Дуплет" FontSize="24"
+                    Command="{Binding StartDupletCommand}" />
+            <Button Content="Блиц" FontSize="24"
+                    Command="{Binding StartBlitzCommand}" />
+            <Button Content="Стоп" FontSize="24"
+                    Command="{Binding StopCommand}" />
         </UniformGrid>
     </Grid>
 </Window>
