@@ -179,20 +179,22 @@ public sealed class TimerViewModel : BaseViewModel
             if (_totalRemaining == 11)
                 _sound.PlayTenSeconds();
 
-            if (_segmentRemaining == 0)
+            if (_segmentRemaining != 0)
             {
-                _timer.Stop();
+                return;
+            }
 
-                if (_totalRemaining == 0)
-                {
-                    BeginFinalCountdown();
-                }
-                else
-                {
-                    _waitingNextSegment = true;
-                    _sound.PlayBreak();
-                    RefreshCommands();
-                }
+            _timer.Stop();
+
+            if (_totalRemaining == 0)
+            {
+                BeginFinalCountdown();
+            }
+            else
+            {
+                _waitingNextSegment = true;
+                _sound.PlayBreak();
+                RefreshCommands();
             }
         }
         else
