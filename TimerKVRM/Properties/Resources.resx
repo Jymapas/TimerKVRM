@@ -119,18 +119,22 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="bBreak" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>break.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>break.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="fc" xml:space="preserve">
-    <value />
+  <data name="finalWarning" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>finalWarning.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="finialCountdown" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>finialCountdown.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>finialCountdown.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="start" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>start.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>start.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="tenSeconds" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>tenSeconds.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>tenSeconds.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
