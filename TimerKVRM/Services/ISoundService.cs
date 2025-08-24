@@ -6,5 +6,6 @@ public interface ISoundService
     void PlayBreak();
     void PlayTenSeconds();
     void PlayFinal();
-    void StopFinal();
+    void PlayFinalWarning();
+    void StopAll();
 }

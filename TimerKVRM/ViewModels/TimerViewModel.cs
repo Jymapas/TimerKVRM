@@ -160,7 +160,7 @@ public sealed class TimerViewModel : BaseViewModel
 
     public void Stop()
     {
-        _sound.StopFinal();
+        _sound.StopAll();
         _timer.Stop();
         ResetToIdle();
         RefreshCommands();
