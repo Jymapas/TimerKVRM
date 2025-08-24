@@ -200,7 +200,13 @@ public sealed class TimerViewModel : BaseViewModel
             _totalRemaining--;
             UpdateText();
 
-            if (_totalRemaining == 0) Stop();
+            if (_totalRemaining != 0)
+            {
+                return;
+            }
+
+            Stop();
+            _sound.PlayFinalWarning();
         }
     }
 
